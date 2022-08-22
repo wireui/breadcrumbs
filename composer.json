@@ -18,10 +18,22 @@
         "friendsofphp/php-cs-fixer": "^3.10",
         "phpstan/phpstan": "^1.8",
         "phpunit/phpunit": "^9.5",
+        "pestphp/pest": "^1.21",
         "mockery/mockery": "^1.5",
         "orchestra/testbench": "^7.6"
     },
     "minimum-stability": "stable",
+    "scripts": {
+        "test": "./vendor/bin/pest --coverage --min=100",
+        "phpstan": "./vendor/bin/phpstan analyse src --level max",
+        "phpcs:fix": "./vendor/bin/php-cs-fixer fix",
+        "phpcs:check": "./vendor/bin/php-cs-fixer fix --dry-run --using-cache=no",
+        "verify": [
+            "@phpstan",
+            "@phpcs:check",
+            "@test"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "WireUi\\Breadcrumb\\": "src/"
@@ -31,6 +43,11 @@
         "psr-4": {
             "App\\": "vendor/orchestra/testbench-core/laravel/app",
             "Tests\\": "tests"
+        }
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
         }
     }
 }
