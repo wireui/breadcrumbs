@@ -16,16 +16,16 @@
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.10",
-        "phpstan/phpstan": "^1.8",
         "phpunit/phpunit": "^9.5",
         "pestphp/pest": "^1.21",
         "mockery/mockery": "^1.5",
-        "orchestra/testbench": "^7.6"
+        "orchestra/testbench": "^7.6",
+        "nunomaduro/larastan": "^2.0"
     },
     "minimum-stability": "stable",
     "scripts": {
         "test": "./vendor/bin/pest --coverage --min=100",
-        "phpstan": "./vendor/bin/phpstan analyse src --level max",
+        "phpstan": "./vendor/bin/phpstan analyse src",
         "phpcs:fix": "./vendor/bin/php-cs-fixer fix",
         "phpcs:check": "./vendor/bin/php-cs-fixer fix --dry-run --using-cache=no",
         "verify": [
