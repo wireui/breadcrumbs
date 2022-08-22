@@ -78,7 +78,7 @@ class BreadcrumbServiceProvider extends ServiceProvider
                 /** @var Trail $breadcrumb */
                 $breadcrumb = ImplicitlyBoundMethod::call(app(), [$component, 'breadcrumb']);
 
-                session()->flash('wireui::breadcrumb', $breadcrumb->toArray());
+                session()->flash(Breadcrumb::SESSION_KEY, $breadcrumb->toArray());
             }
         });
 

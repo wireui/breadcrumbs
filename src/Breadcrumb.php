@@ -10,6 +10,8 @@ use Illuminate\View\Component;
 
 class Breadcrumb extends Component
 {
+    public const SESSION_KEY = 'wireui::breadcrumb';
+
     public array $breadcrumb = [];
 
     public ?string $page = null;
@@ -24,18 +26,18 @@ class Breadcrumb extends Component
             $this->breadcrumb = $route->getBreadcrumb();
         }
 
-        if ($breadcrumb = session()->pull('wireui::breadcrumb')) {
+        if ($breadcrumb = session()->pull(self::SESSION_KEY)) {
             $this->breadcrumb = $breadcrumb;
         }
 
-        $this->page = $this->getPageName();
+        $this->page = $this->makePageName($request);
 
         $this->home = value(config('wireui.breadcrumb.home'));
     }
 
-    private function getPageName(): string
+    private function makePageName(Request $request): string
     {
-        return Str::of(request()->route()->getName())
+        return Str::of($request->route()?->getName())
             ->replace('.', ' ')
             ->title()
             ->toString();
