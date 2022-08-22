@@ -20,8 +20,12 @@ class Breadcrumb extends Component
     {
         $route = $request->route();
 
-        if ($route instanceof Route) {
+        if ($route instanceof Route && property_exists($route, 'breadcrumb')) {
             $this->breadcrumb = $route->getBreadcrumb();
+        }
+
+        if ($breadcrumb = session()->pull('wireui::breadcrumb')) {
+            $this->breadcrumb = $breadcrumb;
         }
 
         $this->page = $this->getPageName();
@@ -39,6 +43,6 @@ class Breadcrumb extends Component
 
     public function render(): View
     {
-        return view('components.layout.breadcrumb');
+        return view('wireui.breadcrumb::breadcrumb');
     }
 }

@@ -73,6 +73,15 @@ class BreadcrumbServiceProvider extends ServiceProvider
 
     private function registerLivewireListeners(): void
     {
+        Livewire::listen('component.hydrate.initial', function (Component $component) {
+            if (method_exists($component, 'breadcrumb')) {
+                /** @var Trail $breadcrumb */
+                $breadcrumb = ImplicitlyBoundMethod::call(app(), [$component, 'breadcrumb']);
+
+                session()->flash('wireui::breadcrumb', $breadcrumb->toArray());
+            }
+        });
+
         Livewire::listen('component.hydrate', static function (Component $component): void {
             if (method_exists($component, 'breadcrumb')) {
                 /** @var Trail $breadcrumb */
