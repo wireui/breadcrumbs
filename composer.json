@@ -45,6 +45,14 @@
             "Tests\\": "tests"
         }
     },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "WireUi\\Breadcrumb\\BreadcrumbServiceProvider"
+            ],
+            "aliases": []
+        }
+    },
     "config": {
         "allow-plugins": {
             "pestphp/pest-plugin": true
