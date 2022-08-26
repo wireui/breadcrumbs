@@ -4,7 +4,7 @@ namespace Tests;
 
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench;
-use WireUi\Breadcrumb\BreadcrumbServiceProvider;
+use WireUi\Breadcrumbs\BreadcrumbsServiceProvider;
 
 class TestCase extends Testbench\TestCase
 {
@@ -21,7 +21,7 @@ class TestCase extends Testbench\TestCase
     {
         return [
             LivewireServiceProvider::class,
-            BreadcrumbServiceProvider::class,
+            BreadcrumbsServiceProvider::class,
         ];
     }
 }

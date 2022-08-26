@@ -7,19 +7,19 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Blade;
 use Mockery\MockInterface;
 use Tests\TestCase;
-use WireUi\Breadcrumb\{Breadcrumb, Trail};
+use WireUi\Breadcrumbs\{Breadcrumbs, Trail};
 
-class BreadcrumbTest extends TestCase
+class BreadcrumbsTest extends TestCase
 {
-    public function test_it_should_get_the_breadcrumb_from_route()
+    public function test_it_should_get_the_breadcrumbs_from_route()
     {
-        $breadcrumb = (new Trail())
+        $breadcrumbs = (new Trail())
             ->push('Test', 'http://test.com')
             ->push('Test 2', 'http://test2.com');
 
         $route = new Route(['GET'], 'test', fn () => '');
 
-        $route->breadcrumb = fn () => $breadcrumb;
+        $route->breadcrumbs = fn () => $breadcrumbs;
 
         /** @var MockInterface|Request */
         $request = $this->partialMock(Request::class)
@@ -27,24 +27,24 @@ class BreadcrumbTest extends TestCase
             ->andReturn($route)
             ->getMock();
 
-        $component = new Breadcrumb($request);
+        $component = new Breadcrumbs($request);
 
-        $this->assertEquals($breadcrumb->toArray(), $component->breadcrumb);
+        $this->assertEquals($breadcrumbs->toArray(), $component->breadcrumbs);
     }
 
-    public function test_it_should_get_the_breadcrumb_from_session()
+    public function test_it_should_get_the_breadcrumbs_from_session()
     {
         $data = [
             ['label' => 'Test', 'url' => 'http://test.com'],
             ['label' => 'Test 2', 'url' => 'http://test2.com'],
         ];
 
-        session()->put(Breadcrumb::EVENT, $data);
+        session()->put(Breadcrumbs::EVENT, $data);
 
-        /** @var Breadcrumb $component */
-        $component = resolve(Breadcrumb::class);
+        /** @var Breadcrumbs $component */
+        $component = resolve(Breadcrumbs::class);
 
-        $this->assertSame($data, $component->breadcrumb);
+        $this->assertSame($data, $component->breadcrumbs);
     }
 
     public function test_it_should_make_the_page_title()
@@ -60,7 +60,7 @@ class BreadcrumbTest extends TestCase
             ->andReturn($route)
             ->getMock();
 
-        $component = new Breadcrumb($request);
+        $component = new Breadcrumbs($request);
 
         $this->assertEquals('Test Index', $component->page);
     }
@@ -68,9 +68,9 @@ class BreadcrumbTest extends TestCase
     /** @dataProvider homeRouteProvider */
     public function test_it_should_set_and_render_the_home_route($route)
     {
-        config()->set('wireui.breadcrumb.home', $route);
+        config()->set('wireui.breadcrumbs.home', $route);
 
-        $html = Blade::render('<x-breadcrumb />');
+        $html = Blade::render('<x-breadcrumbs />');
 
         $this->assertStringContainsString('href="https://example.com"', $html);
     }

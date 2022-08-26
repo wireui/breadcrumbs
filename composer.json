@@ -1,6 +1,6 @@
 {
-    "name": "wireui/breadcrumb",
-    "description": "Breadcrumb component for Laravel, Livewire, TallStack",
+    "name": "wireui/breadcrumbs",
+    "description": "Breadcrumbs component for Laravel, Livewire, TallStack",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -36,7 +36,7 @@
     },
     "autoload": {
         "psr-4": {
-            "WireUi\\Breadcrumb\\": "src/"
+            "WireUi\\Breadcrumbs\\": "src/"
         }
     },
     "autoload-dev": {
@@ -48,7 +48,7 @@
     "extra": {
         "laravel": {
             "providers": [
-                "WireUi\\Breadcrumb\\BreadcrumbServiceProvider"
+                "WireUi\\Breadcrumbs\\BreadcrumbsServiceProvider"
             ],
             "aliases": []
         }

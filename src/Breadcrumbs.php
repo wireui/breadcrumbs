@@ -1,6 +1,6 @@
 <?php
 
-namespace WireUi\Breadcrumb;
+namespace WireUi\Breadcrumbs;
 
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
@@ -8,11 +8,11 @@ use Illuminate\Routing\Route;
 use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
-class Breadcrumb extends Component
+class Breadcrumbs extends Component
 {
-    public const EVENT = 'wireui::breadcrumb';
+    public const EVENT = 'wireui::breadcrumbs';
 
-    public array $breadcrumb = [];
+    public array $breadcrumbs = [];
 
     public ?string $page = null;
 
@@ -22,17 +22,17 @@ class Breadcrumb extends Component
     {
         $route = $request->route();
 
-        if ($route instanceof Route && property_exists($route, 'breadcrumb')) {
-            $this->breadcrumb = $route->getBreadcrumb();
+        if ($route instanceof Route && property_exists($route, 'breadcrumbs')) {
+            $this->breadcrumbs = $route->getBreadcrumbs();
         }
 
-        if ($breadcrumb = session()->pull(self::EVENT)) {
-            $this->breadcrumb = $breadcrumb;
+        if ($breadcrumbs = session()->pull(self::EVENT)) {
+            $this->breadcrumbs = $breadcrumbs;
         }
 
         $this->page = $this->makePageName($request);
 
-        $this->home = value(config('wireui.breadcrumb.home'));
+        $this->home = value(config('wireui.breadcrumbs.home'));
     }
 
     private function makePageName(Request $request): string
@@ -45,6 +45,6 @@ class Breadcrumb extends Component
 
     public function render(): View
     {
-        return view('wireui.breadcrumb::breadcrumb');
+        return view('wireui.breadcrumbs::breadcrumbs');
     }
 }

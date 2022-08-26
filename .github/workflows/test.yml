@@ -1,4 +1,4 @@
-name: WireUi Breadcrumb Tests
+name: WireUi Breadcrumbs Tests
 
 on:
   push:

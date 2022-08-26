@@ -3,12 +3,12 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Tests\TestCase;
-use WireUi\Breadcrumb\Trail;
+use WireUi\Breadcrumbs\Trail;
 
-it('should get the route breadcrumb', function () {
+it('should get the route breadcrumbs', function () {
     Route::get('test', function (Request $request) {
-        return $request->route()->getBreadcrumb();
-    })->breadcrumb(function (Trail $trail) {
+        return $request->route()->getBreadcrumbs();
+    })->breadcrumbs(function (Trail $trail) {
         return $trail
             ->push('Test', 'http://test.com')
             ->push('Test 2', 'http://test2.com');
@@ -21,9 +21,9 @@ it('should get the route breadcrumb', function () {
     ]);
 });
 
-it('should get a empty breadcrumb if the route doesnt have breadcrumb', function () {
+it('should get a empty breadcrumbs if the route doesnt have breadcrumbs', function () {
     Route::get('test', function (Request $request) {
-        return $request->route()->getBreadcrumb();
+        return $request->route()->getBreadcrumbs();
     });
 
     /** @var TestCase $this */

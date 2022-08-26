@@ -2,11 +2,11 @@
 
 use Illuminate\Contracts\View\View;
 use Livewire\{Component, CreateBladeView, Livewire};
-use WireUi\Breadcrumb\{Breadcrumb, Trail};
+use WireUi\Breadcrumbs\{Breadcrumbs, Trail};
 
-class ComponentWithBreadcrumb extends Component
+class ComponentWithBreadcrumbs extends Component
 {
-    public function breadcrumb(): Trail
+    public function breadcrumbs(): Trail
     {
         return (new Trail())
             ->push('Home', '/')
@@ -21,17 +21,17 @@ class ComponentWithBreadcrumb extends Component
     }
 }
 
-it('should push the breadcrumb to session in the initial request', function () {
-    Livewire::test(ComponentWithBreadcrumb::class)->assertSessionHas(Breadcrumb::EVENT, [
+it('should push the breadcrumbs to session in the initial request', function () {
+    Livewire::test(ComponentWithBreadcrumbs::class)->assertSessionHas(Breadcrumbs::EVENT, [
         ['label' => 'Home', 'url' => '/'],
         ['label' => 'About', 'url' => '/about'],
     ]);
 });
 
 it('should push to the events queue on subsequents request', function () {
-    Livewire::test(ComponentWithBreadcrumb::class)
+    Livewire::test(ComponentWithBreadcrumbs::class)
         ->call('$refresh')
-        ->assertDispatchedBrowserEvent(Breadcrumb::EVENT, [
+        ->assertDispatchedBrowserEvent(Breadcrumbs::EVENT, [
             ['label' => 'Home', 'url' => '/'],
             ['label' => 'About', 'url' => '/about'],
         ]);

@@ -1,14 +1,14 @@
 <?php
 
-namespace WireUi\Breadcrumb;
+namespace WireUi\Breadcrumbs;
 
 class Trail
 {
-    private $breadcrumb = [];
+    private $breadcrumbs = [];
 
     public function push(string $label, ?string $url = null): self
     {
-        $this->breadcrumb[] = [
+        $this->breadcrumbs[] = [
             'label' => $label,
             'url'   => $url,
         ];
@@ -18,6 +18,6 @@ class Trail
 
     public function toArray(): array
     {
-        return $this->breadcrumb;
+        return $this->breadcrumbs;
     }
 }
