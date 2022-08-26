@@ -48,7 +48,4 @@ jobs:
           composer update --no-interaction --no-suggest
 
       - name: Run tests and code analysis
-        run: |
-          composer verify
-          php artisan vendor:publish --tag="wireui.breadcrumb.config"
-          php artisan vendor:publish --tag="wireui.breadcrumb.views"
+        run: composer verify
