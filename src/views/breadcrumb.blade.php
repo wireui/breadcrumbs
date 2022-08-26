@@ -5,7 +5,7 @@
         breadcrumb: @js($breadcrumb),
 
         init() {
-            document.addEventListener('breadcrumb', ({ detail }) => {
+            document.addEventListener('wireui::breadcrumb', ({ detail }) => {
                 this.breadcrumb = detail
             })
         }
