@@ -34,6 +34,19 @@ If you want to use the default breadcrumbs component, you need to install these 
 composer require wireui/breadcrumbs
 ```
 
+#### Using Tailwind?
+Add the breadcrumbs path to the content of your Tailwind config file.
+```js
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+    ...
+    content: [
+        './vendor/wireui/breadcrumbs/src/**/*.php',
+    ],
+    ...
+}
+```
+
 #### How to use it?
 You can define the routes by calling the breadcrumbs method in the route or the livewire component.
 <br>This method accepts a callable function that returns the Trail instance.
