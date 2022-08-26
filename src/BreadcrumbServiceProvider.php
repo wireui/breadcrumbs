@@ -87,7 +87,7 @@ class BreadcrumbServiceProvider extends ServiceProvider
                 /** @var Trail $breadcrumb */
                 $breadcrumb = ImplicitlyBoundMethod::call(app(), [$component, 'breadcrumb']);
 
-                $component->dispatchBrowserEvent('breadcrumb', $breadcrumb->toArray());
+                $component->dispatchBrowserEvent(Breadcrumb::SESSION_KEY, $breadcrumb->toArray());
             }
         });
     }
