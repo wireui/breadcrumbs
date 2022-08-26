@@ -10,7 +10,7 @@ use Illuminate\View\Component;
 
 class Breadcrumb extends Component
 {
-    public const SESSION_KEY = 'wireui::breadcrumb';
+    public const EVENT = 'wireui::breadcrumb';
 
     public array $breadcrumb = [];
 
@@ -26,7 +26,7 @@ class Breadcrumb extends Component
             $this->breadcrumb = $route->getBreadcrumb();
         }
 
-        if ($breadcrumb = session()->pull(self::SESSION_KEY)) {
+        if ($breadcrumb = session()->pull(self::EVENT)) {
             $this->breadcrumb = $breadcrumb;
         }
 

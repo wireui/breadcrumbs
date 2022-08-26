@@ -22,7 +22,7 @@ class ComponentWithBreadcrumb extends Component
 }
 
 it('should push the breadcrumb to session in the initial request', function () {
-    Livewire::test(ComponentWithBreadcrumb::class)->assertSessionHas(Breadcrumb::SESSION_KEY, [
+    Livewire::test(ComponentWithBreadcrumb::class)->assertSessionHas(Breadcrumb::EVENT, [
         ['label' => 'Home', 'url' => '/'],
         ['label' => 'About', 'url' => '/about'],
     ]);
@@ -31,7 +31,7 @@ it('should push the breadcrumb to session in the initial request', function () {
 it('should push to the events queue on subsequents request', function () {
     Livewire::test(ComponentWithBreadcrumb::class)
         ->call('$refresh')
-        ->assertDispatchedBrowserEvent(Breadcrumb::SESSION_KEY, [
+        ->assertDispatchedBrowserEvent(Breadcrumb::EVENT, [
             ['label' => 'Home', 'url' => '/'],
             ['label' => 'About', 'url' => '/about'],
         ]);

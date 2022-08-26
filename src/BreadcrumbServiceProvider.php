@@ -78,7 +78,7 @@ class BreadcrumbServiceProvider extends ServiceProvider
                 /** @var Trail $breadcrumb */
                 $breadcrumb = ImplicitlyBoundMethod::call(app(), [$component, 'breadcrumb']);
 
-                session()->flash(Breadcrumb::SESSION_KEY, $breadcrumb->toArray());
+                session()->flash(Breadcrumb::EVENT, $breadcrumb->toArray());
             }
         });
 
@@ -87,7 +87,7 @@ class BreadcrumbServiceProvider extends ServiceProvider
                 /** @var Trail $breadcrumb */
                 $breadcrumb = ImplicitlyBoundMethod::call(app(), [$component, 'breadcrumb']);
 
-                $component->dispatchBrowserEvent(Breadcrumb::SESSION_KEY, $breadcrumb->toArray());
+                $component->dispatchBrowserEvent(Breadcrumb::EVENT, $breadcrumb->toArray());
             }
         });
     }

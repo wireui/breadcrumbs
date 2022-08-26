@@ -39,7 +39,7 @@ class BreadcrumbTest extends TestCase
             ['label' => 'Test 2', 'url' => 'http://test2.com'],
         ];
 
-        session()->put(Breadcrumb::SESSION_KEY, $data);
+        session()->put(Breadcrumb::EVENT, $data);
 
         /** @var Breadcrumb $component */
         $component = resolve(Breadcrumb::class);
