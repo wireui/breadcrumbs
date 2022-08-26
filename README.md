@@ -20,8 +20,6 @@ This package provides a beautiful **breadcrumbs** component, with a simple and e
 
 <img  src="images/breadcrumb.png" alt="WireUi Breadcrumbs"/>
 
-<br>
-
 ### 📚 Get Started
 #### Prerequisites:
 * [Laravel 9.x](https://laravel.com)
