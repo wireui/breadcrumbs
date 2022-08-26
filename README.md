@@ -18,6 +18,10 @@
 This package provides a beautiful **breadcrumbs** component, with a simple and easy way to use define your breadcrumbs.
 <br>You can define your breadcrumbs in the **routes** or **livewire** components.
 
+<img  src="images/breadcrumb.png" alt="WireUi Breadcrumbs"/>
+
+<br>
+
 ### 📚 Get Started
 #### Prerequisites:
 * [Laravel 9.x](https://laravel.com)
