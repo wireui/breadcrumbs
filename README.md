@@ -15,8 +15,8 @@
 [![WireUi Breadcrumbs Tests](https://github.com/wireui/breadcrumbs/actions/workflows/test.yml/badge.svg)](https://github.com/wireui/breadcrumbs/actions/workflows/test.yml)
 
 ### 🔥 Breadcrumbs
-This package provides a beautiful breadcrumbs component, with a simple and easy way to use define your breadcrumbs.
-<br>You can define your breadcrumbs in the routes or livewire components.
+This package provides a beautiful **breadcrumbs** component, with a simple and easy way to use define your breadcrumbs.
+<br>You can define your breadcrumbs in the **routes** or **livewire** components.
 
 ### 📚 Get Started
 #### Prerequisites:
