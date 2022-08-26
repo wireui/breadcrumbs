@@ -5,7 +5,6 @@ namespace WireUi\Breadcrumbs;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
-use Illuminate\Support\Str;
 use Illuminate\View\Component;
 
 class Breadcrumbs extends Component
@@ -30,17 +29,7 @@ class Breadcrumbs extends Component
             $this->breadcrumbs = $breadcrumbs;
         }
 
-        $this->page = $this->makePageName($request);
-
         $this->home = value(config('wireui.breadcrumbs.home'));
-    }
-
-    private function makePageName(Request $request): string
-    {
-        return Str::of($request->route()?->getName())
-            ->replace('.', ' ')
-            ->title()
-            ->toString();
     }
 
     public function render(): View

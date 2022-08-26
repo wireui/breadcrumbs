@@ -47,24 +47,6 @@ class BreadcrumbsTest extends TestCase
         $this->assertSame($data, $component->breadcrumbs);
     }
 
-    public function test_it_should_make_the_page_title()
-    {
-        $route = $this->partialMock(Route::class)
-            ->shouldReceive('getName')
-            ->andReturn('test.index')
-            ->getMock();
-
-        /** @var MockInterface|Request */
-        $request = $this->partialMock(Request::class)
-            ->shouldReceive('route')
-            ->andReturn($route)
-            ->getMock();
-
-        $component = new Breadcrumbs($request);
-
-        $this->assertEquals('Test Index', $component->page);
-    }
-
     /** @dataProvider homeRouteProvider */
     public function test_it_should_set_and_render_the_home_route($route)
     {

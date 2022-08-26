@@ -1,7 +1,6 @@
 <div
     class="flex items-center text-slate-600"
     x-data="{
-        page: @js($page),
         breadcrumbs: @js($breadcrumbs),
 
         init() {
@@ -11,9 +10,7 @@
         }
     }"
 >
-    <p x-text="page" class="font-semibold tracking-wider sm:pr-4 sm:border-r sm:border-gray-300"></p>
-
-    <div class="hidden sm:flex items-center gap-2 pl-3.5">
+    <div class="flex items-center gap-2">
         <a href="{{ $home }}">
             <!-- Heroicons v2 home/outline -->
             <svg class="w-5 h-5 text-indigo-600" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
