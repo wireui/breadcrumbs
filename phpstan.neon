@@ -11,7 +11,6 @@ parameters:
         - '#Call to an undefined method Illuminate\\Routing\\Route::getBreadcrumb#'
         - '#Access to an undefined property Illuminate\\Routing\\Route::\$breadcrumb#'
         - '#Call to an undefined static method Livewire\\Livewire::listen#'
-        - '#Cannot call method getName\(\) on object\|string#'
 
     excludePaths:
 
