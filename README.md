@@ -15,8 +15,8 @@
 [![WireUi Breadcrumbs Tests](https://github.com/wireui/breadcrumbs/actions/workflows/test.yml/badge.svg)](https://github.com/wireui/breadcrumbs/actions/workflows/test.yml)
 
 ### 🔥 Breadcrumbs
-This package provides a beautiful **breadcrumbs** component, with a simple and easy way to use define your breadcrumbs.
-<br>You can define your breadcrumbs in the **routes** or **livewire** components.
+This package provides a beautiful **breadcrumbs** component, with a simple and easy way to define your breadcrumbs.
+<br>You can define it in **routes** or full page **livewire** components.
 
 <img  src="images/breadcrumb.png" alt="WireUi Breadcrumbs"/>
 
@@ -50,7 +50,7 @@ module.exports = {
 ```
 
 #### How to use it?
-You can define the routes by calling the breadcrumbs method in the route or the livewire component.
+You can define it on routes by calling the breadcrumbs method in the route or the livewire component.
 <br>This method accepts a callable function that returns the Trail instance.
 
 #### Dependency Injection
@@ -74,7 +74,7 @@ Route::get('/users/{user}', Index::class)
 ```
 
 #### Routes
-You can define yours breadcrumbs in the routes
+You can define your breadcrumbs in the routes
 ```php
 use Illuminate\Support\Facades\Route;
 use WireUi\Breadcrumbs\Trail;
@@ -89,7 +89,7 @@ Route::get('/users/create', Index::class)
 ```
 
 #### Livewire Components
-You can define yours breadcrumbs in the livewire components.
+You can define your breadcrumbs in the livewire components.
 <br>The breadcrumbs in the livewire components is reactive
 ```php
 <?php
