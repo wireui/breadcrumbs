@@ -10,28 +10,27 @@
         }
     ],
     "require": {
-        "php": "^8.1",
-        "laravel/framework": "^9.25",
-        "livewire/livewire": "^2.10"
+        "php": "^8.1|^8.2",
+        "laravel/framework": "^9.25|^10.0",
+        "livewire/livewire": "^2.12"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^3.10",
-        "phpunit/phpunit": "^9.5",
-        "pestphp/pest": "^1.21",
+        "phpunit/phpunit": "^9.6",
+        "pestphp/pest": "^1.22",
         "mockery/mockery": "^1.5",
-        "orchestra/testbench": "^7.6",
-        "nunomaduro/larastan": "^2.0"
+        "orchestra/testbench": "^7.6|^8.0",
+        "nunomaduro/larastan": "^2.0",
+        "laravel/pint": "^1.6"
     },
     "minimum-stability": "stable",
     "scripts": {
         "test": "./vendor/bin/pest --coverage --min=100",
-        "phpstan": "./vendor/bin/phpstan analyse src",
-        "phpcs:fix": "./vendor/bin/php-cs-fixer fix",
-        "phpcs:check": "./vendor/bin/php-cs-fixer fix --dry-run --using-cache=no",
+        "phpstan": "./vendor/bin/phpstan analyse",
+        "pint:fix": "./vendor/bin/pint",
+        "pint:check": "./vendor/bin/pint --test",
         "verify": [
-            "@phpstan",
-            "@phpcs:check",
-            "@test"
+            "@pint:check",
+            "@phpstan"
         ]
     },
     "autoload": {
