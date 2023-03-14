@@ -16,6 +16,10 @@
         <include>
             <directory suffix=".php">src/</directory>
         </include>
+
+        <exclude>
+            <file>src/views/breadcrumbs.blade.php</file>
+        </exclude>
     </coverage>
 
     <testsuites>
