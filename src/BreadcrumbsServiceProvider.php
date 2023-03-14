@@ -25,11 +25,11 @@ class BreadcrumbsServiceProvider extends ServiceProvider
         $this->mergeConfigFrom("{$rootDir}/config.php", 'wireui.breadcrumbs');
         $this->publishes(
             ["{$rootDir}/config.php" => config_path('wireui/breadcrumbs.php')],
-            'wireui.breadcrumbs.config'
+            'wireui.breadcrumbs.config',
         );
         $this->publishes(
             ["{$rootDir}/views" => resource_path('views/vendor/wireui/breadcrumbs')],
-            'wireui.breadcrumbs.views'
+            'wireui.breadcrumbs.views',
         );
     }
 
@@ -50,7 +50,6 @@ class BreadcrumbsServiceProvider extends ServiceProvider
     {
         Route::macro('breadcrumbs', function (callable $callback): Route {
             /** @var Route $this */
-
             $this->breadcrumbs = function () use ($callback) {
                 $route = request()->route();
 
@@ -62,7 +61,6 @@ class BreadcrumbsServiceProvider extends ServiceProvider
 
         Route::macro('getBreadcrumbs', function (): array {
             /** @var Route $this */
-
             if (property_exists($this, 'breadcrumbs')) {
                 return ($this->breadcrumbs)()->toArray();
             }

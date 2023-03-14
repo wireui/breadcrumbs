@@ -16,7 +16,7 @@ class ComponentWithBreadcrumbs extends Component
     public function render(): View
     {
         return app('view')->make(
-            CreateBladeView::fromString('<div>Test Component</div>')
+            CreateBladeView::fromString('<div>Test Component</div>'),
         );
     }
 }
