@@ -22,8 +22,8 @@ This package provides a beautiful **breadcrumbs** component, with a simple and e
 
 ### 📚 Get Started
 #### Prerequisites:
-* [Laravel 9.x](https://laravel.com)
-* [PHP 8.1](https://www.php.net/releases/8.1/en.php)
+* [Laravel 9.x | 10.x](https://laravel.com)
+* [PHP 8.1 | 8.2](https://www.php.net/releases/8.1/en.php)
 * [Livewire 2.10](https://laravel-livewire.com)
 
 #### Optional
