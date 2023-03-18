@@ -22,7 +22,7 @@
         "nunomaduro/larastan": "^2.0",
         "laravel/pint": "^1.6"
     },
-    "minimum-stability": "stable",
+    "minimum-stability": "dev",
     "scripts": {
         "test": "./vendor/bin/pest --coverage --min=100",
         "phpstan": "./vendor/bin/phpstan analyse",
