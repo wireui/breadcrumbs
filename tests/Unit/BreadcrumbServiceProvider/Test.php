@@ -11,8 +11,8 @@ it('should register the views path', function () {
 
     /** @var FileViewFinder $finder */
     $finder = $view->getFinder();
-    expect($finder->getHints())->toHaveKey('wireui.breadcrumbs');
-    expect($finder->getHints()['wireui.breadcrumbs'][0])->toContain('src/views');
+    expect($finder->getHints())->toHaveKey('wireui');
+    expect($finder->getHints()['wireui'][0])->toContain('src/views');
 });
 
 it('should merge the wireui.breadcrumbs config', function () {
@@ -37,7 +37,7 @@ it('should add the publish groups', function () {
     expect(array_key_first($publishGroups['wireui.breadcrumbs.views']))->toBeDirectory();
 
     expect(array_values($publishGroups['wireui.breadcrumbs.config'])[0])->toEndWith('config/wireui/breadcrumbs.php');
-    expect(array_values($publishGroups['wireui.breadcrumbs.views'])[0])->toEndWith('resources/views/vendor/wireui/breadcrumbs');
+    expect(array_values($publishGroups['wireui.breadcrumbs.views'])[0])->toEndWith('resources/views/vendor/wireui');
 });
 
 it('should register the blade components', function () {

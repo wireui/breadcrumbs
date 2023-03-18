@@ -12,7 +12,7 @@ class BreadcrumbsServiceProvider extends ServiceProvider
     public function boot(): void
     {
         $this->registerConfig();
-        $this->registerBladeComponents();
+        $this->registerComponent();
         $this->registerRouteMacros();
         $this->registerLivewireListeners();
     }
@@ -21,19 +21,20 @@ class BreadcrumbsServiceProvider extends ServiceProvider
     {
         $rootDir = __DIR__;
 
-        $this->loadViewsFrom("{$rootDir}/views", 'wireui.breadcrumbs');
         $this->mergeConfigFrom("{$rootDir}/config.php", 'wireui.breadcrumbs');
+        $this->loadViewsFrom("{$rootDir}/views", 'wireui');
+
         $this->publishes(
             ["{$rootDir}/config.php" => config_path('wireui/breadcrumbs.php')],
             'wireui.breadcrumbs.config',
         );
         $this->publishes(
-            ["{$rootDir}/views" => resource_path('views/vendor/wireui/breadcrumbs')],
+            ["{$rootDir}/views" => resource_path('views/vendor/wireui')],
             'wireui.breadcrumbs.views',
         );
     }
 
-    protected function registerBladeComponents(): void
+    protected function registerComponent(): void
     {
         if (!config('wireui.breadcrumbs.alias')) {
             return;
