@@ -6,7 +6,7 @@ return [
         | Icon component alias                                                    |
         |-------------------------------------------------------------------------|
         | The component alias to import in the blade/livewire component           |
-        | Set to false to disable the component.                                  |
+        | Set as false to disable the component.                                  |
         |-------------------------------------------------------------------------|
         | Example                                                                 |
         | <x-breadcrumbs />                                                        |
@@ -22,8 +22,8 @@ return [
         | You can pass a string value or a closure that returns a string value.   |
         |-------------------------------------------------------------------------|
         | Example                                                                 |
-        | 'home' => 'home',                                                       |
-        | 'home' => fn() => route('my-route'),                                    |
+        | 'home' => '/home',                                                       |
+        | 'home' => fn() => route('home'),                                    |
         |-------------------------------------------------------------------------|
     */
     'home' => '/',

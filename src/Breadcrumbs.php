@@ -13,8 +13,6 @@ class Breadcrumbs extends Component
 
     public array $breadcrumbs = [];
 
-    public ?string $page = null;
-
     public string $home = '';
 
     public function __construct(Request $request)
@@ -34,6 +32,6 @@ class Breadcrumbs extends Component
 
     public function render(): View
     {
-        return view('wireui.breadcrumbs::breadcrumbs');
+        return view('wireui::breadcrumbs');
     }
 }
