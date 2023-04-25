@@ -16,7 +16,7 @@ class ServiceProvider extends Support\ServiceProvider
     {
         $this->registerConfig();
 
-        if (!config('wireui.breadcrumbs.alias')) {
+        if (config('wireui.breadcrumbs.alias')) {
             $this->registerComponent();
         }
 
