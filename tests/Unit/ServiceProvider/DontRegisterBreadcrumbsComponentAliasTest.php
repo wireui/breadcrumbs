@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Unit\BreadcrumbsServiceProvider;
+namespace Tests\Unit\ServiceProvider;
 
 use Illuminate\View\Compilers\BladeCompiler;
 use Tests\TestCase;

@@ -1,6 +1,7 @@
 .idea
 .vscode
 .coverage
+.phpunit.cache
 .phpunit.result.cache
 .php-cs-fixer.cache
 vendor

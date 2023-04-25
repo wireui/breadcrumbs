@@ -2,36 +2,71 @@
 
 namespace WireUi\Breadcrumbs;
 
-use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
-use Illuminate\View\Component;
+use Closure;
+use Livewire\ImplicitlyBoundMethod;
+use ReflectionException;
+use WireUi\Breadcrumbs\Exceptions\InvalidTrailInstance;
 
-class Breadcrumbs extends Component
+final class Breadcrumbs implements Contracts\Breadcrumbs
 {
-    public const EVENT = 'wireui::breadcrumbs';
+    private Trail $trail;
 
-    public array $breadcrumbs = [];
+    private ?Closure $callback = null;
 
-    public string $home = '';
-
-    public function __construct(Request $request)
+    public static function for(string $route): self
     {
-        $route = $request->route();
+        $instance = new self();
 
-        if ($route instanceof Route && property_exists($route, 'breadcrumbs')) {
-            $this->breadcrumbs = $route->getBreadcrumbs();
-        }
+        $instance->trail = new Trail();
 
-        if ($breadcrumbs = session()->pull(self::EVENT)) {
-            $this->breadcrumbs = $breadcrumbs;
-        }
+        app(Contracts\Repository::class)->set($route, $instance);
 
-        $this->home = value(config('wireui.breadcrumbs.home'));
+        return $instance;
     }
 
-    public function render(): View
+    public function push(string $label, ?string $url = null): self
     {
-        return view('wireui::breadcrumbs');
+        $this->trail->push($label, $url);
+
+        return $this;
+    }
+
+    public function callback(Closure $callback): self
+    {
+        $this->callback = $callback;
+
+        return $this;
+    }
+
+    public function toTrail(): Trail
+    {
+        $this->mergeCallbackIntoTrail();
+
+        return $this->trail;
+    }
+
+    /**
+     * @throws ReflectionException
+     * @throws InvalidTrailInstance
+     */
+    private function mergeCallbackIntoTrail(): void
+    {
+        if (!$this->callback) {
+            return;
+        }
+
+        $routeParameters = request()->route()?->parameters() ?? [];
+
+        $trail = ImplicitlyBoundMethod::call(app(), $this->callback, $routeParameters);
+
+        if (!$trail instanceof Trail) {
+            throw new InvalidTrailInstance();
+        }
+
+        foreach ($trail->toPaths() as $path) {
+            $this->trail->push($path->label, $path->url);
+        }
+
+        $this->callback = null;
     }
 }
