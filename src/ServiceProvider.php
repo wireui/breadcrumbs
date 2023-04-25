@@ -43,6 +43,10 @@ class ServiceProvider extends Support\ServiceProvider
             ["{$rootDir}/views" => resource_path('views/vendor/wireui')],
             'wireui.breadcrumbs.views',
         );
+        $this->publishes(
+            ["{$rootDir}/../stubs/breadcrumbs.php.stub" => base_path('routes') . '/breadcrumbs.php'],
+            'wireui.breadcrumbs.route',
+        );
     }
 
     protected function registerComponent(): void
