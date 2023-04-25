@@ -4,7 +4,8 @@ namespace Tests;
 
 use Livewire\LivewireServiceProvider;
 use Orchestra\Testbench;
-use WireUi\Breadcrumbs\BreadcrumbsServiceProvider;
+use ReflectionClass;
+use WireUi\Breadcrumbs\ServiceProvider;
 
 class TestCase extends Testbench\TestCase
 {
@@ -21,7 +22,17 @@ class TestCase extends Testbench\TestCase
     {
         return [
             LivewireServiceProvider::class,
-            BreadcrumbsServiceProvider::class,
+            ServiceProvider::class,
         ];
+    }
+
+    /** Get protected/private property value of a class */
+    public function invadeProperty(mixed $object, string $property)
+    {
+        $reflection = new ReflectionClass(get_class($object));
+        $property   = $reflection->getProperty($property);
+        $property->setAccessible(true);
+
+        return $property->getValue($object);
     }
 }

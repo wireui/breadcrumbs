@@ -1,10 +1,10 @@
 <?php
 
-namespace Tests\Unit\BreadcrumbsServiceProvider;
+namespace Tests\Unit\ServiceProvider;
 
 use Illuminate\View\Compilers\BladeCompiler;
 use Tests\TestCase;
-use WireUi\Breadcrumbs\Breadcrumbs;
+use WireUi\Breadcrumbs\Components\Tallstack;
 
 class RegisterBreadcrumbsComponentAliasTest extends TestCase
 {
@@ -21,6 +21,6 @@ class RegisterBreadcrumbsComponentAliasTest extends TestCase
         $aliases = $bladeCompiler->getClassComponentAliases();
 
         $this->assertArrayHasKey('custom-name', $aliases, 'The custom alias should be registered');
-        $this->assertSame($aliases['custom-name'], Breadcrumbs::class);
+        $this->assertSame($aliases['custom-name'], Tallstack::class);
     }
 }

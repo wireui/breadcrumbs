@@ -1,16 +1,13 @@
 includes:
-#    - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/nunomaduro/larastan/extension.neon
 
 parameters:
     paths:
         - src
 
-    level: 5
+    level: 9
 
     ignoreErrors:
-        - '#Call to an undefined method Illuminate\\Routing\\Route::getBreadcrumb#'
-        - '#Access to an undefined property Illuminate\\Routing\\Route::\$breadcrumb#'
-        - '#Call to an undefined static method Livewire\\Livewire::listen#'
 
     excludePaths:
 

@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - 1.x
 
   pull_request:
     types: [ready_for_review, synchronize, opened]
@@ -16,8 +17,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        php: [8.1, 8.2]
-        laravel: [9.*, 10.*]
+        php: [8.2]
+        laravel: [10.*]
 
     name: PHP:${{ matrix.php }} / Laravel:${{ matrix.laravel }}
 
@@ -49,8 +50,11 @@ jobs:
           composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
           composer update --no-interaction --no-suggest
 
-      - name: Run PHPUnit tests
-        run: composer test
+      - name: Check Code Style
+        run: composer pint:check
 
-      - name: Check code style
-        run: composer verify
+      - name: Check Static Analysis
+        run: composer phpstan
+
+      - name: Run PHPUnit Tests
+        run:  ./vendor/bin/pest --coverage --min=100

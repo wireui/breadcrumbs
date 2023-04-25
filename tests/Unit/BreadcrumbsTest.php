@@ -1,67 +1,53 @@
 <?php
 
-namespace Tests\Unit;
-
 use Illuminate\Http\Request;
-use Illuminate\Routing\Route;
-use Illuminate\Support\Facades\Blade;
-use Mockery\MockInterface;
-use Tests\TestCase;
+use WireUi\Breadcrumbs\Contracts\Repository;
+use WireUi\Breadcrumbs\Exceptions\InvalidTrailInstance;
 use WireUi\Breadcrumbs\{Breadcrumbs, Trail};
 
-class BreadcrumbsTest extends TestCase
-{
-    public function test_it_should_get_the_breadcrumbs_from_route()
-    {
-        $breadcrumbs = (new Trail())
-            ->push('Test', 'http://test.com')
-            ->push('Test 2', 'http://test2.com');
+it('should get the breadcrumbs trail', function () {
+    $breadcrumbs = Breadcrumbs::for('users')
+        ->push('Users', 'my-route.com')
+        ->push('View')
+        ->callback(function (Trail $trail, Request $request): Trail {
+            return $trail->push('Final');
+        });
 
-        $route = new Route(['GET'], 'test', fn () => '');
+    $instance = app(Repository::class)->get('users');
 
-        $route->breadcrumbs = fn () => $breadcrumbs;
+    expect($instance)->toBe($breadcrumbs);
 
-        /** @var MockInterface|Request */
-        $request = $this->partialMock(Request::class)
-            ->shouldReceive('route')
-            ->andReturn($route)
-            ->getMock();
+    $trail = $instance->toTrail();
 
-        $component = new Breadcrumbs($request);
+    expect($trail)->toBeInstanceOf(Trail::class);
 
-        $this->assertEquals($breadcrumbs->toArray(), $component->breadcrumbs);
-    }
+    expect($trail->toArray())->toBe([
+        [
+            'label' => 'Users',
+            'url'   => 'my-route.com',
+        ],
+        [
+            'label' => 'View',
+            'url'   => null,
+        ],
+        [
+            'label' => 'Final',
+            'url'   => null,
+        ],
+    ]);
 
-    public function test_it_should_get_the_breadcrumbs_from_session()
-    {
-        $data = [
-            ['label' => 'Test', 'url' => 'http://test.com'],
-            ['label' => 'Test 2', 'url' => 'http://test2.com'],
-        ];
+    expect($this->invadeProperty($instance, 'callback'))->toBeNull();
+});
 
-        session()->put(Breadcrumbs::EVENT, $data);
+it('should throw an exception when the closure not returns a trail instance', function () {
+    $this->expectException(InvalidTrailInstance::class);
 
-        /** @var Breadcrumbs $component */
-        $component = resolve(Breadcrumbs::class);
+    Breadcrumbs::for('users')
+        ->push('Users', 'my-route.com')
+        ->push('View')
+        ->callback(fn () => 'not a trail instance');
 
-        $this->assertSame($data, $component->breadcrumbs);
-    }
+    $instance = app(Repository::class)->get('users');
 
-    /** @dataProvider homeRouteProvider */
-    public function test_it_should_set_and_render_the_home_route($route)
-    {
-        config()->set('wireui.breadcrumbs.home', $route);
-
-        $html = Blade::render('<x-breadcrumbs />');
-
-        $this->assertStringContainsString('href="https://example.com"', $html);
-    }
-
-    public function homeRouteProvider(): array
-    {
-        return [
-            ['https://example.com'],
-            [fn () => 'https://example.com'],
-        ];
-    }
-}
+    $instance->toTrail();
+});

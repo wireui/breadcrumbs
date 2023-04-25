@@ -3,28 +3,26 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     bootstrap="vendor/autoload.php"
     backupGlobals="false"
-    backupStaticAttributes="false"
     colors="true"
-    verbose="true"
-    convertErrorsToExceptions="true"
-    convertNoticesToExceptions="true"
-    convertWarningsToExceptions="true"
     processIsolation="false"
     stopOnFailure="false"
-    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.6/phpunit.xsd">
-    <coverage>
-        <include>
-            <directory suffix=".php">src/</directory>
-        </include>
-
-        <exclude>
-            <file>src/views/breadcrumbs.blade.php</file>
-        </exclude>
-    </coverage>
-
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/10.1/phpunit.xsd"
+    cacheDirectory=".phpunit.cache"
+    backupStaticProperties="false"
+>
     <testsuites>
         <testsuite name="Unit">
             <directory suffix="Test.php">./tests/Unit</directory>
         </testsuite>
     </testsuites>
+
+    <source>
+        <include>
+            <directory suffix=".php">src/</directory>
+        </include>
+
+        <exclude>
+            <directory>src/views</directory>
+        </exclude>
+    </source>
 </phpunit>
