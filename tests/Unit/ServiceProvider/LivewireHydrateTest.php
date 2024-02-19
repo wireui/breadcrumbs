@@ -1,8 +1,7 @@
 <?php
 
 use Livewire\Livewire;
-use Tests\Unit\ServiceProvider\Livewire\ComponentWithBreadcrumbs;
-use Tests\Unit\ServiceProvider\Livewire\ComponentWithInvalidBreadcrumbsType;
+use Tests\Unit\ServiceProvider\Livewire\{ComponentWithBreadcrumbs, ComponentWithInvalidBreadcrumbsType};
 use WireUi\Breadcrumbs\Components\Tallstack;
 
 it('should push the breadcrumbs to session in the initial request', function () {
