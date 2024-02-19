@@ -26,8 +26,8 @@ Simplify your users' navigation **experience** with our **intuitive** interface 
 ### 📚 Get Started
 #### Prerequisites:
 * [Laravel 10.x](https://laravel.com)
-* [PHP 8.2](https://www.php.net/releases/8.1/en.php)
-* [Livewire 2.10](https://laravel-livewire.com)
+* [PHP 8.2+](https://www.php.net/releases/8.1/en.php)
+* [Livewire 3](https://laravel-livewire.com)
 
 #### Optional - TallStack
 If do you want to use the default breadcrumbs component, you need to install these packages.
