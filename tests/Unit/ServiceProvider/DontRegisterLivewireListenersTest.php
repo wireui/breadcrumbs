@@ -16,7 +16,7 @@ class DontRegisterLivewireListenersTest extends TestCase
 
     public function test_should_not_register_the_livewire_listeners()
     {
-         Livewire::test(new ComponentWithBreadcrumbs());
+        Livewire::test(new ComponentWithBreadcrumbs());
 
         $this->assertNull(
             session()->get(Tallstack::EVENT),
