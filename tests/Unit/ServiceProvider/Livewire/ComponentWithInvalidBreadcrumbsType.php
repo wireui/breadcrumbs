@@ -2,8 +2,7 @@
 
 namespace Tests\Unit\ServiceProvider\Livewire;
 
-use Illuminate\Contracts\View\View;
-use Livewire\{Component, CreateBladeView};
+use Livewire\Component;
 
 class ComponentWithInvalidBreadcrumbsType extends Component
 {
@@ -12,10 +11,8 @@ class ComponentWithInvalidBreadcrumbsType extends Component
         return [];
     }
 
-    public function render(): View
+    public function render(): string
     {
-        return app('view')->make(
-            CreateBladeView::fromString('<div>Test Component</div>'),
-        );
+        return '<div>Test Component</div>';
     }
 }
