@@ -2,8 +2,7 @@
 
 namespace Tests\Unit\ServiceProvider\Livewire;
 
-use Illuminate\Contracts\View\View;
-use Livewire\{Component, CreateBladeView};
+use Livewire\Component;
 use WireUi\Breadcrumbs\Trail;
 
 class ComponentWithBreadcrumbs extends Component
@@ -15,10 +14,8 @@ class ComponentWithBreadcrumbs extends Component
             ->push('About', '/about');
     }
 
-    public function render(): View
+    public function render(): string
     {
-        return app('view')->make(
-            CreateBladeView::fromString('<div>Test Component</div>'),
-        );
+        return '<div>Test Component</div>';
     }
 }
