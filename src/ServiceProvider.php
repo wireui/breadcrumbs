@@ -5,10 +5,11 @@ namespace WireUi\Breadcrumbs;
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Support;
 use Illuminate\View\Compilers\BladeCompiler;
-use Livewire\{Component, ImplicitlyBoundMethod, Livewire};
+use Livewire\{Component, ImplicitlyBoundMethod};
 use WireUi\Breadcrumbs\Components\Tallstack;
-use WireUi\Breadcrumbs\Exceptions\InvalidTrailInstance;
 use WireUi\Breadcrumbs\Http\Middleware\BreadcrumbsInjector;
+
+use function Livewire\on as LivewireHook;
 
 class ServiceProvider extends Support\ServiceProvider
 {
@@ -60,27 +61,27 @@ class ServiceProvider extends Support\ServiceProvider
 
     private function registerLivewireListeners(): void
     {
-        Livewire::listen('component.hydrate.initial', static function (Component $component): void {
+        LivewireHook('mount', function (Component $component) {
             if (method_exists($component, 'breadcrumbs')) {
                 $trail = ImplicitlyBoundMethod::call(app(), [$component, 'breadcrumbs']);
 
                 if (!$trail instanceof Trail) {
-                    throw new InvalidTrailInstance();
+                    return;
                 }
 
-                session()->flash(Tallstack::EVENT, $trail->toArray());
+                session()->now(Tallstack::EVENT, $trail->toArray());
             }
         });
 
-        Livewire::listen('component.hydrate', static function (Component $component): void {
+        LivewireHook('hydrate', function (Component $component) {
             if (method_exists($component, 'breadcrumbs')) {
                 $trail = ImplicitlyBoundMethod::call(app(), [$component, 'breadcrumbs']);
 
                 if (!$trail instanceof Trail) {
-                    throw new InvalidTrailInstance();
+                    return;
                 }
 
-                $component->dispatchBrowserEvent(Tallstack::EVENT, $trail->toArray());
+                $component->dispatch(Tallstack::EVENT, $trail->toArray());
             }
         });
     }
