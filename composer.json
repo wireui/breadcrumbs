@@ -1,12 +1,19 @@
 {
     "name": "wireui/breadcrumbs",
-    "description": "Breadcrumbs component for Laravel, Livewire, TallStack",
     "type": "library",
+    "description": "Breadcrumbs component for Laravel, Livewire, TallStack",
     "license": "MIT",
+    "keywords": [
+        "wireui",
+        "livewire-ui",
+        "blade components",
+        "laravel components",
+        "livewire components"
+    ],
     "authors": [
         {
-            "name": "PH7-Jack",
-            "email": "pedrolivertwd@gmail.com"
+            "name": "Pedro Oliveira",
+            "email": "pedro@wireui.dev"
         }
     ],
     "require": {
@@ -21,17 +28,6 @@
         "nunomaduro/larastan": "^2.5",
         "laravel/pint": "^1.9"
     },
-    "minimum-stability": "dev",
-    "scripts": {
-        "test": "./vendor/bin/pest --coverage --min=100 --parallel",
-        "phpstan": "./vendor/bin/phpstan analyse",
-        "pint:fix": "./vendor/bin/pint",
-        "pint:check": "./vendor/bin/pint --test",
-        "verify": [
-            "@pint:check",
-            "@phpstan"
-        ]
-    },
     "autoload": {
         "psr-4": {
             "WireUi\\Breadcrumbs\\": "src/"
@@ -42,6 +38,16 @@
             "App\\": "vendor/orchestra/testbench-core/laravel/app",
             "Tests\\": "tests"
         }
+    },
+    "scripts": {
+        "test": "./vendor/bin/pest --coverage --min=100 --parallel",
+        "phpstan": "./vendor/bin/phpstan analyse",
+        "pint:fix": "./vendor/bin/pint",
+        "pint:check": "./vendor/bin/pint --test",
+        "verify": [
+            "@pint:check",
+            "@phpstan"
+        ]
     },
     "extra": {
         "laravel": {
@@ -55,5 +61,7 @@
         "allow-plugins": {
             "pestphp/pest-plugin": true
         }
-    }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
 }
