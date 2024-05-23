@@ -11,7 +11,9 @@
 
 ### 🚀 Introduction
 
-This documentation only refers to the new version of WireUi. If you want changes to the version 1 documentation, open an Issue and let us know what needs to be changed.
+WireUI Breadcrumbs package streamlines the process of implementing breadcrumbs in your web application. Our package offers an elegant and customizable breadcrumbs API that can be easily defined in your routes or full page livewire components.
+
+Simplify your users' navigation experience with our intuitive interface and straightforward code.
 
 ### 📚 Documentation
 
