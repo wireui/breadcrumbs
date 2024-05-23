@@ -3,7 +3,7 @@
 <h2><p align="center">WireUi Breadcrumbs</p></h2>
 
 <p align="center">
-<a href="https://github.com/wireui/breadcrumbs/actions"><img src="https://github.com/wireui/breadcrumbs/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+<a href="https://github.com/wireui/breadcrumbs/actions"><img src="https://github.com/wireui/breadcrumbs/actions/workflows/test.yml/badge.svg" alt="Tests"></a>
 <a href="https://packagist.org/packages/wireui/breadcrumbs"><img src="https://img.shields.io/packagist/dt/wireui/breadcrumbs" alt="Downloads" /></a>
 <a href="license.md"><img src="https://img.shields.io/github/license/wireui/breadcrumbs" alt="License" /></a>
 <a href="https://x.com/Wire_Ui"><img src="https://img.shields.io/twitter/url?url=https://x.com/Wire_Ui" alt="Twitter"></a>
