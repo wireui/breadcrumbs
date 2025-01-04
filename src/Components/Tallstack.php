@@ -35,7 +35,6 @@ class Tallstack extends Component
     }
 
     /**
-     * @param Request $request
      * @return array<int, array{label: string, url: string|null}>
      */
     public function getBreadcrumbsFromRequest(Request $request): array
