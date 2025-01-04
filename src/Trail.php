@@ -25,6 +25,7 @@ class Trail
         return $this->paths;
     }
 
+    /** @return array<int, array{label: string, url: string|null}> */
     public function toArray(): array
     {
         return array_map(

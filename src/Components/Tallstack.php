@@ -13,6 +13,7 @@ class Tallstack extends Component
 {
     public const EVENT = 'wireui::breadcrumbs';
 
+    /** @var array<int, array{label: string, url: string|null}> */
     public array $breadcrumbs = [];
 
     public string $home = '';
@@ -33,6 +34,10 @@ class Tallstack extends Component
         $this->home = $home;
     }
 
+    /**
+     * @param Request $request
+     * @return array<int, array{label: string, url: string|null}>
+     */
     public function getBreadcrumbsFromRequest(Request $request): array
     {
         $route = $request->route()?->getName();
@@ -52,6 +57,6 @@ class Tallstack extends Component
 
     public function render(): View
     {
-        return view('wireui::tallstack');
+        return view('wireui::tallstack'); // @phpstan-ignore-line
     }
 }

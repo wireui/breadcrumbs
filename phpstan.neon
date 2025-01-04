@@ -1,5 +1,5 @@
 includes:
-    - ./vendor/nunomaduro/larastan/extension.neon
+    - ./vendor/larastan/larastan/extension.neon
 
 parameters:
     paths:
@@ -10,5 +10,3 @@ parameters:
     ignoreErrors:
 
     excludePaths:
-
-    checkMissingIterableValueType: false
