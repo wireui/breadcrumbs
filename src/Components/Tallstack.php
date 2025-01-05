@@ -41,11 +41,9 @@ class Tallstack extends Component
     {
         $route = $request->route()?->getName();
 
-        if (!$route) {
-            return [];
-        }
-
-        $breadcrumbs = app(Repository::class)->get($route);
+        $breadcrumbs = $route
+            ? app(Repository::class)->get($route)
+            : null;
 
         if ($breadcrumbs instanceof Breadcrumbs) {
             return $breadcrumbs->toTrail()->toArray();
