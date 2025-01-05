@@ -6,13 +6,14 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Blade;
 use Mockery;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Tests\TestCase;
 use WireUi\Breadcrumbs\Breadcrumbs;
 use WireUi\Breadcrumbs\Components\Tallstack;
 
 class TallstackTest extends TestCase
 {
-    public function test_it_should_get_the_breadcrumbs_from_route()
+    public function test_it_should_get_the_breadcrumbs_from_route(): void
     {
         Breadcrumbs::for($routeName = 'test')
             ->push('Test', 'http://test.com')
@@ -39,7 +40,7 @@ class TallstackTest extends TestCase
         ]);
     }
 
-    public function test_it_should_return_an_empty_breadcrumbs_value_from_route_when_it_not_exists()
+    public function test_it_should_return_an_empty_breadcrumbs_value_from_route_when_it_not_exists(): void
     {
         /** @var Route $route */
         $route = Mockery::mock(new Route(['GET'], 'test', fn () => ''))
@@ -59,7 +60,7 @@ class TallstackTest extends TestCase
         $this->assertSame($component->breadcrumbs, []);
     }
 
-    public function test_it_should_return_an_empty_breadcrumbs_from_route_when_exists_but_is_empty()
+    public function test_it_should_return_an_empty_breadcrumbs_from_route_when_exists_but_is_empty(): void
     {
         Breadcrumbs::for($routeName = 'test');
 
@@ -81,7 +82,7 @@ class TallstackTest extends TestCase
         $this->assertSame($component->breadcrumbs, []);
     }
 
-    public function test_it_should_get_the_breadcrumbs_from_session()
+    public function test_it_should_get_the_breadcrumbs_from_session(): void
     {
         $data = [
             ['label' => 'Test', 'url' => 'http://test.com'],
@@ -96,8 +97,8 @@ class TallstackTest extends TestCase
         $this->assertSame($data, $component->breadcrumbs);
     }
 
-    /** @dataProvider homeRouteProvider */
-    public function test_it_should_set_and_render_the_home_route($route)
+    #[DataProvider('homeRouteProvider')]
+    public function test_it_should_set_and_render_the_home_route($route): void
     {
         config()->set('wireui.breadcrumbs.home', $route);
 
@@ -106,7 +107,7 @@ class TallstackTest extends TestCase
         $this->assertStringContainsString('href="https://example.com"', $html);
     }
 
-    public function homeRouteProvider(): array
+    public static function homeRouteProvider(): array
     {
         return [
             ['https://example.com'],
