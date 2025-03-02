@@ -34,6 +34,11 @@ jobs:
           tools: composer:v2
           coverage: xdebug
 
+      - name: Install Composer dependencies
+        run: |
+          composer require "laravel/framework:${{ matrix.laravel }}" --no-interaction --no-update
+          composer update --no-interaction --no-suggest
+
       - name: Check Code Style
         run: composer pint:check
 
